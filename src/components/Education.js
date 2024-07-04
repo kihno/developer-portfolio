@@ -2,31 +2,28 @@ import { useScroll, motion } from "framer-motion"
 import { useRef } from "react"
 import LiIcon from "./LiIcon"
 
-const Details = ({position, company, companyLink, time, address, work}) => {
+const Details = ({ type, time, place, info }) => {
   const ref = useRef(null)
 
   return(
     <li ref={ref} className="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-center justify-between">
       <LiIcon reference={ref} />
       <motion.div initial={{ y:50 }} whileInView={{ y:0 }} transition={{ duration:0.5, type: "spring" }}>
-        <h3 className="capitalize font-bold text-2xl">{position}
-          &nbsp;
-          <a href={companyLink} target="_blank" className="text-primary capitalize">
-            @{company}
-          </a>
+        <h3 className="capitalize font-bold text-2xl">
+          {type}
         </h3>
         <span className="capitalize font-medium text-dark/75">
-          {time} | {address}
+          {time} | {place}
         </span>
         <p className="font-medium w-full">
-          {work}
+          {info}
         </p>
       </motion.div>
     </li>
   )
 }
 
-const Experience = () => {
+const Education = () => {
   const ref = useRef(null)
   const {scrollYProgress} = useScroll({
     target: ref,
@@ -36,34 +33,22 @@ const Experience = () => {
   return (
     <div className="my-64">
       <h2 className="font-bold text-8xl mb-32 2-full text-center">
-        Expreience
+        Education
       </h2>
       <div ref={ref} className="w-[75%] mx-auto relative">
         <motion.div style={{scaleY: scrollYProgress}} className="absolute left-9 top-0 w-[4px] h-full bg-dark origin-top" />
         <ul className="w-full flex flex-col items-start justify-between ml-4">
           <Details
-            position="Brand Web Developer"
-            company="Pacific BMW"
-            companyLink="www.pacificbmw.com"
-            time="2021-Present"
-            address="Glendale, CA"
-            work="Developed web pages and mobile application."
+            type="Web Development and Coding Specialization"
+            time="2020"
+            place="University of Michigan"
+            info="Relavent coursework in HTML5, CSS3, and JavaScript"
           />
           <Details
-            position="Brand Web Developer"
-            company="Pacific BMW"
-            companyLink="www.pacificbmw.com"
-            time="2021-Present"
-            address="Glendale, CA"
-            work="Developed web pages and mobile application."
-          />
-          <Details
-            position="Brand Web Developer"
-            company="Pacific BMW"
-            companyLink="www.pacificbmw.com"
-            time="2021-Present"
-            address="Glendale, CA"
-            work="Developed web pages and mobile application."
+            type="Bachelor of Arts in Film and Electronic Arts"
+            time="2010"
+            place="California State University Long Beach"
+            info="Magna Cum Laude"
           />
         </ul>
       </div>
@@ -71,4 +56,5 @@ const Experience = () => {
   );
 }
 
-export default Experience;
+export default Education;
+
